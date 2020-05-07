@@ -9,7 +9,7 @@ module.exports = (env, args) => {
         entry: './src/ts/main.js',
         output: {
             filename: 'js/bundle.js',
-            path: path.resolve(__dirname, 'dist')
+            path: path.resolve(__dirname, 'dist'),
         },
 
         devServer: {

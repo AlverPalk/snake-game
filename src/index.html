@@ -9,5 +9,21 @@
 </head>
 <body>
     <canvas id="canvas"></canvas>
+    <div id="start-screen">
+        <h1>Snake game</h1>
+        <label for="game-difficulty">Game difficulty</label>
+        <select name="difficulty" id="game-difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+        <button id="start-game">Start game</button>
+    </div>
+    <div id="game-over">
+        <h2>Game over</h2>
+        <h1 id="score">0</h1>
+        <button id="play-again">Play again?</button>
+        <button id="start-menu">Main menu</button>
+    </div>
 </body>
 </html>
