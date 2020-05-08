@@ -24,45 +24,46 @@ export var GC = {
     score: 0
 };
 var snake = new Snake();
-document.addEventListener('keypress', function (e) {
-    switch (e.key.toLowerCase()) {
-        case 'w':
-            GC.directionKey = 'w';
-            break;
-        case 'a':
-            GC.directionKey = 'a';
-            break;
-        case 's':
-            GC.directionKey = 's';
-            break;
-        case 'd':
-            GC.directionKey = 'd';
-            break;
-        default:
-            break;
-    }
-});
-document.getElementById('start-game').addEventListener('click', function () {
-    document.getElementById('start-screen').style.display = 'none';
-    var difficulty = document.getElementById('game-difficulty').value.toLowerCase();
-    resetData();
-    GC.scale -= Difficulty[difficulty];
-    GC.gameState = GameState.GAME_RUNNING;
-});
-document.getElementById('start-menu').addEventListener('click', function () {
-    GC.gameState = GameState.MENU;
-    document.getElementById('game-over').style.display = 'none';
-});
-document.getElementById('play-again').addEventListener('click', function () {
-    GC.score = 0;
-    GC.directionKey = '';
-    document.getElementById('game-over').style.display = 'none';
-    GC.gameState = GameState.GAME_RUNNING;
-    snake.reset();
-});
 function init() {
     canvas.height = GC.canvasHeight;
     canvas.width = GC.canvasWidth;
+    // Set up event listeners
+    document.addEventListener('keypress', function (e) {
+        switch (e.key.toLowerCase()) {
+            case 'w':
+                GC.directionKey = 'w';
+                break;
+            case 'a':
+                GC.directionKey = 'a';
+                break;
+            case 's':
+                GC.directionKey = 's';
+                break;
+            case 'd':
+                GC.directionKey = 'd';
+                break;
+            default:
+                break;
+        }
+    });
+    document.getElementById('start-game').addEventListener('click', function () {
+        document.getElementById('start-screen').style.display = 'none';
+        var difficulty = document.getElementById('game-difficulty').value.toLowerCase();
+        resetData();
+        GC.scale -= Difficulty[difficulty];
+        GC.gameState = GameState.GAME_RUNNING;
+    });
+    document.getElementById('start-menu').addEventListener('click', function () {
+        GC.gameState = GameState.MENU;
+        document.getElementById('game-over').style.display = 'none';
+    });
+    document.getElementById('play-again').addEventListener('click', function () {
+        GC.score = 0;
+        GC.directionKey = '';
+        document.getElementById('game-over').style.display = 'none';
+        GC.gameState = GameState.GAME_RUNNING;
+        snake.reset();
+    });
     resetData();
     update();
 }

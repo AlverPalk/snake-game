@@ -24,50 +24,52 @@ export const GC = {
     gameState: GameState.MENU,
     directionKey: '',
     score: 0
-
 }
 
 const snake = new Snake();
-document.addEventListener('keypress', (e) => {
-    switch (e.key.toLowerCase()) {
-        case 'w':
-            GC.directionKey = 'w';
-            break;
-        case 'a':
-            GC.directionKey = 'a';
-            break;
-        case 's':
-            GC.directionKey = 's';
-            break;
-        case 'd':
-            GC.directionKey = 'd';
-            break;
-        default:
-            break;
-    }
-})
-document.getElementById('start-game')!.addEventListener('click', () => {
-    document.getElementById('start-screen')!.style.display = 'none';
-    let difficulty = (<HTMLSelectElement>document.getElementById('game-difficulty')!).value.toLowerCase();
-    resetData();
-    GC.scale -= Difficulty[difficulty];
-    GC.gameState = GameState.GAME_RUNNING;
-})
-document.getElementById('start-menu')!.addEventListener('click', () => {
-    GC.gameState = GameState.MENU;
-    document.getElementById('game-over')!.style.display = 'none';
-})
-document.getElementById('play-again')!.addEventListener('click', () => {
-    GC.score = 0;
-    GC.directionKey = '';
-    document.getElementById('game-over')!.style.display = 'none';
-    GC.gameState = GameState.GAME_RUNNING;
-    snake.reset();
-})
 
 function init() {
     canvas.height = GC.canvasHeight;
     canvas.width = GC.canvasWidth;
+
+    // Set up event listeners
+    document.addEventListener('keypress', (e) => {
+        switch (e.key.toLowerCase()) {
+            case 'w':
+                GC.directionKey = 'w';
+                break;
+            case 'a':
+                GC.directionKey = 'a';
+                break;
+            case 's':
+                GC.directionKey = 's';
+                break;
+            case 'd':
+                GC.directionKey = 'd';
+                break;
+            default:
+                break;
+        }
+    })
+    document.getElementById('start-game')!.addEventListener('click', () => {
+        document.getElementById('start-screen')!.style.display = 'none';
+        let difficulty = (<HTMLSelectElement>document.getElementById('game-difficulty')!).value.toLowerCase();
+        resetData();
+        GC.scale -= Difficulty[difficulty];
+        GC.gameState = GameState.GAME_RUNNING;
+    })
+    document.getElementById('start-menu')!.addEventListener('click', () => {
+        GC.gameState = GameState.MENU;
+        document.getElementById('game-over')!.style.display = 'none';
+    })
+    document.getElementById('play-again')!.addEventListener('click', () => {
+        GC.score = 0;
+        GC.directionKey = '';
+        document.getElementById('game-over')!.style.display = 'none';
+        GC.gameState = GameState.GAME_RUNNING;
+        snake.reset();
+    })
+
     resetData();
     update();
 }
